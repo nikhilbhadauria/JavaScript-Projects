@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: "Gilroy", sans-serif;
+    background: #0f0f0f;
+    color: white;
+    overflow: hidden;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    gap: 2rem;
+}
+
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1000;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+    width: 35px;
+    height: 35px;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.hovered .cursor-outline {
+    transform: translate(-50%, -50%) scale(1.8);
+    border-color: #ff4f81;
+    background: rgba(255, 79, 129, 0.1);
+}
+
+.hovered .cursor-dot {
+    background: linear-gradient(45deg, #ff4f81, #ff6ec4);
+}
+
+button.btn {
+    padding: 0.7em 1.5em;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #00dbde, #fc00ff);
+    color: white;
+    z-index: 10;
+}
+
+.pink-theme:hover ~ .cursor-outline {
+    border-color: pink;
+}
+
+.cursor-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(45deg, #ff4f81, #ff6ec4);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.7;
+    transform: translate(-50%, -50%);
+    animation: fadeOut 0.3s ease forwards;
+    z-index: 999;
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+}
+
+.click-ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff6ec4;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.5s ease-out forwards;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@keyframes ripple {
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
